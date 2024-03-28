@@ -1,7 +1,15 @@
-from mmdet.apis import DetInferencer
+import matplotlib.pyplot as plt
+import numpy as np
 
-# 初始化模型
-inferencer = DetInferencer('rtmdet_tiny_8xb32-300e_coco')
+# 定义数据矩阵
+C = np.array([[0, 2, 4, 6],
+              [8, 10, 12, 14],
+              [16, 18, 20, 22]])
 
-# 推理示例图片
-inferencer('demo/demo.jpg', show=True)
+# 显示图像
+plt.imshow(C)
+
+# 添加颜色条
+plt.colorbar()
+
+plt.show()
