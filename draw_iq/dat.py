@@ -6,19 +6,23 @@ from scipy.signal import stft, windows
 import math
 
 
+# 写一个截取算法，统一尺度，当采样率不够的时候要有一个截取算法，在频率上
+# 要把所有文件用.dat来读，速度很快
+1
+
 # 不断读取文件夹内文件并拼接数据
 # 检测前文件路径
-sourceFolderPath = 'E:/Drone/in'
+sourceFolderPath = 'E:/360MoveData/Users/sam826001/Desktop/temp'
 # 输出实文件夹路径
-targetFolderPath = 'E:/Drone/done'
-figure_OutPath = 'E:/Drone/out'
+targetFolderPath = 'E:/360MoveData/Users/sam826001/Desktop/done'
+figure_OutPath = 'E:/360MoveData/Users/sam826001/Desktop/1'
 file_all = []
 data_all = []
 dataI = np.array([])
 dataQ = np.array([])
 frame = 1
-time_duration = 0.03
-fs = 15e6
+time_duration = 0.01  # 0.03
+fs = 100e6  # 15e6
 slice_point = int(fs * time_duration)
 stft_point = 2048
 temp_dataI = np.array([])

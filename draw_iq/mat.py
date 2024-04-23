@@ -17,6 +17,9 @@ TODO
 论文研究内容:
 7.信噪比作为颜色标尺
 8.AWG信噪比加噪声做对比实验
+
+# 写一个截取算法，统一尺度，当采样率不够的时候要有一个截取算法，在频率上
+# 要把所有文件用.dat来读，速度很快
 '''
 
 '''
@@ -31,7 +34,7 @@ time_duration = 0.1  # 预设时间窗的长度(关键参数)，决定x尺度
 fs = 100e6  # 采样带宽要和采样设备匹配,实验室设备的采样带宽一般为15MHZ，原论文中的最大采样带宽为100MHZ，采样带宽决定y轴尺度
 slice_point = int(fs*time_duration)
 
-fly_name = 'AVATA'  # 预设无人机的名称
+fly_name = 'inspire2'  # 预设无人机的名称
 sourceFolderPath = 'E:/360MoveData/Users/sam826001/Desktop/AVATA/'  # 预设读取的目录
 targetFolderPath = 'E:/360MoveData/Users/sam826001/Desktop/temp/'  # 预设保存的目录
 
@@ -61,9 +64,9 @@ def main():
                 # plt.figure()
                 plt.ioff()  # 关闭可视窗
                 plt.pcolormesh(t_I1, f_I1, augmentation_Zxx1)  # 画图时在颜色标尺上应用了一个软件增益使信号在图中更加明显，其实不用也行，用了还会丢失距离信息
-                # plt.colorbar()  # 在做实验观察信号的时候可以加一个颜色标尺，做数据集时不用加颜色标尺
+                plt.colorbar()  # 在做实验观察信号的时候可以加一个颜色标尺，做数据集时不用加颜色标尺
                 plt.title(fly_name + (str(i)))
-                plt.savefig(targetFolderPath + fly_name + str(i) + '2.4GHZ.jpg', dpi=300)  # dpi设置了图片保存的清晰度，300对应1K的图片
+                plt.savefig(targetFolderPath + fly_name + str(i) + '_20-40m_' + '985MHZ.jpg', dpi=300)  # dpi设置了图片保存的清晰度，300对应1K的图片
                 plt.close()
 
                 # 再画第二个通道的
@@ -71,11 +74,11 @@ def main():
                                  fs, window=windows.hamming(stft_point), nperseg=stft_point)
                 augmentation_Zxx2 = 20*np.log10(np.abs(Zxx_I2))  # 是否选择增强
                 # 画第二组IQ
-                # plt.figure()
-                plt.pcolormesh(t_I2, f_I2, augmentation_Zxx2)  # 画图时在颜色标尺上应用了一个软件增益使信号在图中更加明显，其实不用也行，用了还会丢失距离信息
+                plt.figure()
+                plt.pcolormesh(t_I2, f_I2, augmentation_Zxx2, cmap='jet')  # 画图时在颜色标尺上应用了一个软件增益使信号在图中更加明显，其实不用也行，用了还会丢失距离信息
                 # plt.colorbar()  # 在做实验观察信号的时候可以加一个颜色标尺，做数据集时不用加颜色标尺
                 plt.title(fly_name + (str(i)))
-                plt.savefig(targetFolderPath + fly_name + str(i) + '5.8GHZ.jpg', dpi=300)
+                plt.savefig(targetFolderPath + fly_name + str(i) + '_20-40m_' + '2.4GHZ.jpg', dpi=300)
                 plt.close()
 
                 i += 1
