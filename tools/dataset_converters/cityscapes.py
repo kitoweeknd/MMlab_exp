@@ -116,7 +116,7 @@ def cvt_annotations(image_infos, out_json_name):
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Convert Cityscapes annotations to COCO format')
-    parser.add_argument('cityscapes_path', help='cityscapes data path')
+    parser.add_argument('cityscapes_path', default='', help='cityscapes data path')
     parser.add_argument('--img-dir', default='leftImg8bit', type=str)
     parser.add_argument('--gt-dir', default='gtFine', type=str)
     parser.add_argument('-o', '--out-dir', help='output path')
