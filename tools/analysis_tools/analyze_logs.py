@@ -103,6 +103,7 @@ def add_plot_parser(subparsers):
         'plot_curve', help='parser for plotting curves')
     parser_plt.add_argument(
         'json_logs',
+        default='E:/训练结果历史数据/Drone_thesis/exp1_faster-RCNN/vis_data/20240517_144742.json',
         type=str,
         nargs='+',
         help='path of train log in json format')
@@ -110,7 +111,7 @@ def add_plot_parser(subparsers):
         '--keys',
         type=str,
         nargs='+',
-        default=['bbox_mAP'],
+        default=['loss_cls', 'loss_bbox', 'loss_rpn_bbox', 'loss_rpn_cls', 'acc'],
         help='the metric that you want to plot')
     parser_plt.add_argument(
         '--start-epoch',
@@ -122,18 +123,18 @@ def add_plot_parser(subparsers):
         type=str,
         default='1',
         help='the eval interval when training')
-    parser_plt.add_argument('--title', type=str, help='title of figure')
+    parser_plt.add_argument('--title', type=str, help='title of figure', default='loss_curve')
     parser_plt.add_argument(
         '--legend',
         type=str,
         nargs='+',
-        default=None,
+        default=['loss_cls', 'loss_bbox', 'loss_rpn_bbox', 'loss_rpn_cls', 'acc'],
         help='legend of each plot')
     parser_plt.add_argument(
         '--backend', type=str, default=None, help='backend of plt')
     parser_plt.add_argument(
         '--style', type=str, default='dark', help='style of plt')
-    parser_plt.add_argument('--out', type=str, default=None)
+    parser_plt.add_argument('--out', type=str, default='E:/训练结果历史数据/Drone_thesis/exp1_faster-RCNN/graph/')
 
 
 def add_time_parser(subparsers):
