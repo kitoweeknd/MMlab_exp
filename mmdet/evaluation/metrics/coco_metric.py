@@ -143,7 +143,15 @@ class CocoMetric(BaseMetric):
             self._coco_api = None
 
         # handle dataset lazy init
-        self.cat_ids = None
+        self.cat_ids = ['DJ_FlightCon',
+                'DJ_PCTrans',
+                'singal1',
+                'singal2',
+                'singal3',
+                'singal4',
+                'singal5',
+                'singal6',
+                'singal7']
         self.img_ids = None
 
     def fast_eval_recall(self,

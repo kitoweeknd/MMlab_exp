@@ -1,5 +1,5 @@
 # 新配置继承了基本配置，并做了必要的修改
-_base_ = 'D:/ML_Project/mmDLtoolbox/configs/faster_rcnn/faster-rcnn_r50-caffe_fpn_1x_coco.py'
+_base_ = 'C:/ML/MMlab_exp/configs/faster_rcnn/faster-rcnn_r50-caffe_fpn_1x_coco.py'
 
 # 我们还需要更改 head 中的 num_classes 以匹配数据集中的类别数
 model = dict(
@@ -7,7 +7,7 @@ model = dict(
         bbox_head=dict(num_classes=9)))
 
 # 修改数据集相关配置
-data_root = 'E:/深度学习记录存储/数据集/signal_coco/'
+data_root = 'E:/数据集历史数据/MMlab/signal_coco/'
 metainfo = {
     'classes': ('DJ_FlightCon',
                 'DJ_PCTrans',
@@ -52,4 +52,4 @@ test_evaluator = dict(
 
 
 # 使用预训练的 faster R-CNN 模型权重来做初始化，可以提高模型性能
-load_from = 'E:/深度学习记录存储/pretrain/faster_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.378_20200504_180032-c5925ee5.pth'
+load_from = 'E:/pretrain/faster_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.378_20200504_180032-c5925ee5.pth'
