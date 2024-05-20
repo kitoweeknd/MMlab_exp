@@ -62,7 +62,7 @@ val_dataloader = dict(
         test_mode=True,
         pipeline=test_pipeline,
         backend_args=backend_args))
-test_dataloader = val_dataloader
+# test_dataloader = val_dataloader
 
 val_evaluator = dict(
     type='CocoMetric',
@@ -70,26 +70,28 @@ val_evaluator = dict(
     metric='bbox',
     format_only=False,
     backend_args=backend_args)
-test_evaluator = val_evaluator
+# test_evaluator = val_evaluator
 
 # inference on test dataset and
 # format the output results for submission.
-# test_dataloader = dict(
-#     batch_size=1,
-#     num_workers=2,
-#     persistent_workers=True,
-#     drop_last=False,
-#     sampler=dict(type='DefaultSampler', shuffle=False),
-#     dataset=dict(
-#         type=dataset_type,
-#         data_root=data_root,
-#         ann_file=data_root + 'annotations/image_info_test-dev2017.json',
-#         data_prefix=dict(img='test2017/'),
-#         test_mode=True,
-#         pipeline=test_pipeline))
-# test_evaluator = dict(
-#     type='CocoMetric',
-#     metric='bbox',
-#     format_only=True,
-#     ann_file=data_root + 'annotations/image_info_test-dev2017.json',
-#     outfile_prefix='./work_dirs/coco_detection/test')
+
+test_dataloader = dict(
+    batch_size=1,
+    num_workers=2,
+    persistent_workers=True,
+    drop_last=False,
+    sampler=dict(type='DefaultSampler', shuffle=False),
+    dataset=dict(
+        type=dataset_type,
+        data_root=data_root,
+        ann_file=data_root + 'annotations/image_info_test-dev2017.json',
+        data_prefix=dict(img='test2017/'),
+        test_mode=True,
+        pipeline=test_pipeline))
+
+test_evaluator = dict(
+    type='CocoMetric',
+    metric='bbox',
+    format_only=True,
+    ann_file=data_root + 'annotations/image_info_test-dev2017.json',
+    outfile_prefix='./work_dirs/coco_detection/test')

@@ -24,7 +24,7 @@ def parse_args():
     parser.add_argument(
         'save_dir', help='directory where confusion matrix will be saved')
     parser.add_argument(
-        '--show', action='store_true', help='show confusion matrix')
+        '--show', default=False, action='store_true', help='show confusion matrix')
     parser.add_argument(
         '--color-theme',
         default='plasma',
@@ -229,10 +229,9 @@ def plot_confusion_matrix(confusion_matrix,
     fig.tight_layout()
     if save_dir is not None:
         plt.savefig(
-            os.path.join(save_dir, 'confusion_matrix.png'), format='png')
+            os.path.join(save_dir, 'confusion_matrix_new.png'), format='png')
     if show:
         plt.show()
-
 
 def main():
     args = parse_args()
@@ -254,6 +253,8 @@ def main():
 
     if not os.path.exists(args.save_dir):
         os.makedirs(args.save_dir)
+    print(cfg.test_dataloader.dataset)
+    dataset_test = DATASETS.build(cfg.train_dataloader.dataset)
 
     dataset = DATASETS.build(cfg.test_dataloader.dataset)
 

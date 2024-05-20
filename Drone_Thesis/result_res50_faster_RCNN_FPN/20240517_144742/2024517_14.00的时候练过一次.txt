@@ -1,0 +1,2 @@
+训练结果存在E:\训练结果历史数据\Drone_thesis\exp1_faster-RCNN
+检测结果存在E:\检测结果历史数据\Drone_Thesis
