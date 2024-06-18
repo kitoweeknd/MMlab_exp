@@ -1,8 +1,15 @@
-_base_ = 'C:/ML/MMlab_exp/configs/efficientnet/retinanet_effb3_fpn_8xb4-crop896-1x_coco.py'
+# 新配置继承了基本配置，并做了必要的修改
+_base_ = 'C:/ML/MMlab_exp/configs/faster_rcnn/faster-rcnn_r50-caffe_fpn_1x_coco.py'
 
-
+# 我们还需要更改 head 中的 num_classes 以匹配数据集中的类别数
 model = dict(
-        bbox_head=dict(num_classes=15)
+    roi_head=dict(
+        bbox_head=dict(num_classes=15)),
+    backbone=dict(
+            depth=101,
+            init_cfg=dict(
+                type='Pretrained',
+                checkpoint='open-mmlab://detectron2/resnet101_caffe'))
 )
 
 # 修改数据集相关配置
@@ -22,7 +29,7 @@ metainfo = {
                 'frequency_hopping_signal_SFST',
                 'frequency_hopping_signal_Square',
                 'frequency_hopping_signal_VLFMT',
-                'yunzhuo_flight_control2'
+                'yunzhuo_flight_control2',
                 ),
     'palette': [
         (220, 20, 60),
@@ -54,4 +61,5 @@ test_evaluator = dict(
     ann_file=data_root + 'test/_annotations.coco.json',
     outfile_prefix='./work_dirs/signals_test/test')
 
-load_from = 'E:/pretrain/retinanet_effb3_fpn_crop896_8x4_1x_coco_20220322_234806-615a0dda.pth'
+
+load_from = 'E:/pretrain/faster_rcnn_r101_caffe_fpn_1x_coco_bbox_mAP-0.398_20200504_180057-b269e9dd.pth'

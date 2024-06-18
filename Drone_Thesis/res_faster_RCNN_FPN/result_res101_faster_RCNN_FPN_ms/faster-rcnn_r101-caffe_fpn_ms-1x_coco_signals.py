@@ -1,8 +1,9 @@
-_base_ = 'C:/ML/MMlab_exp/configs/efficientnet/retinanet_effb3_fpn_8xb4-crop896-1x_coco.py'
+_base_ = 'C:/ML/MMlab_exp/configs/faster_rcnn/faster-rcnn_r101-caffe_fpn_ms-3x_coco.py'
 
 
 model = dict(
-        bbox_head=dict(num_classes=15)
+    roi_head=dict(
+        bbox_head=dict(num_classes=15))
 )
 
 # 修改数据集相关配置
@@ -22,7 +23,7 @@ metainfo = {
                 'frequency_hopping_signal_SFST',
                 'frequency_hopping_signal_Square',
                 'frequency_hopping_signal_VLFMT',
-                'yunzhuo_flight_control2'
+                'yunzhuo_flight_control2',
                 ),
     'palette': [
         (220, 20, 60),
@@ -54,4 +55,6 @@ test_evaluator = dict(
     ann_file=data_root + 'test/_annotations.coco.json',
     outfile_prefix='./work_dirs/signals_test/test')
 
-load_from = 'E:/pretrain/retinanet_effb3_fpn_crop896_8x4_1x_coco_20220322_234806-615a0dda.pth'
+
+# 用普通r101 3x 即可
+load_from = 'E:/pretrain/faster_rcnn_r101_caffe_fpn_mstrain_3x_coco_20210526_095742-a7ae426d.pth'
