@@ -23,18 +23,18 @@ def parse_args():
     parser.add_argument('checkpoint', help='checkpoint file')
     parser.add_argument(
         '--work-dir',
-        default='C:/ML/MMlab_exp/Drone_Thesis/res_faster_RCNN_FPN/20240517_144742/',
+        default='E:/深度学习记录存储/训练结果/Drone_Thesis/exp1_fasterRCNNR50/20240613_111339/res/',
         help='the directory to save the file containing evaluation metrics')
     parser.add_argument(
         '--out',
         type=str,
-        default='C:/ML/MMlab_exp/Drone_Thesis/res_faster_RCNN_FPN/20240517_144742/new_test.pkl',
+        default='E:/深度学习记录存储/训练结果/Drone_Thesis/exp1_fasterRCNNR50/20240613_111339/res/new_test.pkl',
         help='dump predictions to a pickle file for offline evaluation')
     parser.add_argument(
         '--show', default=False, action='store_true', help='show prediction results')
     parser.add_argument(
         '--show-dir',
-        default='C:/ML/MMlab_exp/Drone_Thesis/res_faster_RCNN_FPN/20240517_144742/20240517_234822/show_dir/',
+        default='E:/深度学习记录存储/训练结果/Drone_Thesis/exp1_fasterRCNNR50/20240613_111339/res/show_dir/',
         help='directory where painted images will be saved. '
         'If specified, it will be automatically saved '
         'to the work_dir/timestamp/show_dir')
