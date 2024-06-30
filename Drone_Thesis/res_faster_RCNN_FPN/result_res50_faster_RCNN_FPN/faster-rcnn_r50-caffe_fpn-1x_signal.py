@@ -7,7 +7,7 @@ model = dict(
         bbox_head=dict(num_classes=15)))
 
 # 修改数据集相关配置
-data_root = 'E:/数据集历史数据/MMlab/drone signal detect few shot.v3i.coco-mmdetection/'
+data_root = 'E:/深度学习记录存储/数据集/signals_COCO/'
 metainfo = {
     'classes': ('Image_Transmission_signal_LFST',
                 'Image_Transmission_signal_LFVST',

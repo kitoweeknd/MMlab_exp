@@ -1,12 +1,14 @@
-_base_ = 'mmdet::common/ssj_scp_270k_coco-instance.py',
+_base_ = ['D:/ML_Project/mmDLtoolbox/configs/_base_/schedules/schedule_1x.py',
+          'D:/ML_Project/mmDLtoolbox/configs/_base_/default_runtime.py']
 
 custom_imports = dict(
     imports=['projects.CO-DETR.codetr'], allow_failed_imports=False)
+pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_large_patch4_window12_384_22k.pth'  # noqa
 
 # model settings
 num_dec_layer = 6
 loss_lambda = 2.0
-num_classes = 80
+num_classes = 15
 
 image_size = (1024, 1024)
 batch_augments = [
@@ -29,18 +31,28 @@ model = dict(
         pad_mask=True,
         batch_augments=batch_augments),
     backbone=dict(
-        type='ResNet',
-        depth=50,
-        num_stages=4,
+        type='SwinTransformer',
+        pretrain_img_size=384,
+        embed_dims=192,
+        depths=[2, 2, 18, 2],
+        num_heads=[6, 12, 24, 48],
+        window_size=12,
+        mlp_ratio=4,
+        qkv_bias=True,
+        qk_scale=None,
+        drop_rate=0.,
+        attn_drop_rate=0.,
+        drop_path_rate=0.3,
+        patch_norm=True,
         out_indices=(0, 1, 2, 3),
-        frozen_stages=1,
-        norm_cfg=dict(type='BN', requires_grad=False),
-        norm_eval=True,
-        style='pytorch',
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')),
+        # Please only add indices that would be used
+        # in FPN, otherwise some parameter will not be used
+        with_cp=False,
+        convert_weights=True,
+        init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
     neck=dict(
         type='ChannelMapper',
-        in_channels=[256, 512, 1024, 2048],
+        in_channels=[192, 384, 768, 1536],
         kernel_size=1,
         out_channels=256,
         act_cfg=None,
@@ -67,7 +79,7 @@ model = dict(
                 # number of layers that use checkpoint.
                 # The maximum value for the setting is num_layers.
                 # FairScale must be installed for it to work.
-                with_cp=4,
+                with_cp=6,
                 transformerlayers=dict(
                     type='BaseTransformerLayer',
                     attn_cfgs=dict(
@@ -103,6 +115,7 @@ model = dict(
         positional_encoding=dict(
             type='SinePositionalEncoding',
             num_feats=128,
+            temperature=20,
             temperature=20,
             normalize=True),
         loss_cls=dict(  # Different from the DINO
@@ -275,44 +288,57 @@ model = dict(
         # e.g., nms=dict(type='soft_nms', iou_threshold=0.5, min_score=0.05)
     ])
 
-# LSJ + CopyPaste
-load_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(
-        type='RandomResize',
-        scale=image_size,
-        ratio_range=(0.1, 2.0),
-        keep_ratio=True),
-    dict(
-        type='RandomCrop',
-        crop_type='absolute_range',
-        crop_size=image_size,
-        recompute_bbox=True,
-        allow_negative_crop=True),
-    dict(type='FilterAnnotations', min_gt_bbox_wh=(1e-2, 1e-2)),
-    dict(type='RandomFlip', prob=0.5),
-    dict(type='Pad', size=image_size, pad_val=dict(img=(114, 114, 114))),
-]
-
 train_pipeline = [
-    dict(type='CopyPaste', max_num_pasted=100),
+    dict(type='LoadImageFromFile', backend_args=_base_.backend_args),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(type='RandomFlip', prob=0.5),
+    dict(
+        type='RandomChoice',
+        transforms=[
+            [
+                dict(
+                    type='RandomChoiceResize',
+                    scales=[(480, 1333), (512, 1333), (544, 1333), (576, 1333),
+                            (608, 1333), (640, 1333), (672, 1333), (704, 1333),
+                            (736, 1333), (768, 1333), (800, 1333)],
+                    keep_ratio=True)
+            ],
+            [
+                dict(
+                    type='RandomChoiceResize',
+                    # The radio of all image in train dataset < 7
+                    # follow the original implement
+                    scales=[(400, 4200), (500, 4200), (600, 4200)],
+                    keep_ratio=True),
+                dict(
+                    type='RandomCrop',
+                    crop_type='absolute_range',
+                    crop_size=(384, 600),
+                    allow_negative_crop=True),
+                dict(
+                    type='RandomChoiceResize',
+                    scales=[(480, 1333), (512, 1333), (544, 1333), (576, 1333),
+                            (608, 1333), (640, 1333), (672, 1333), (704, 1333),
+                            (736, 1333), (768, 1333), (800, 1333)],
+                    keep_ratio=True)
+            ]
+        ]),
     dict(type='PackDetInputs')
 ]
 
 train_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=True),
     dataset=dict(
+        type='MultiImageMixDataset',
+        filter_cfg=dict(filter_empty_gt=False, min_size=32),
         pipeline=train_pipeline,
-        dataset=dict(
-            filter_cfg=dict(filter_empty_gt=False), pipeline=load_pipeline)))
-
+    )
+)
 # follow ViTDet
 test_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=image_size, keep_ratio=True),  # diff
-    dict(type='Pad', size=image_size, pad_val=dict(img=(114, 114, 114))),
-    dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
+    dict(type='LoadImageFromFile', backend_args=_base_.backend_args),
+    dict(type='Resize', scale=(1333, 800), keep_ratio=True),
+    dict(type='LoadAnnotations', with_bbox=True),
     dict(
         type='PackDetInputs',
         meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
