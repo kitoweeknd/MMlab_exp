@@ -83,7 +83,6 @@ train_dataloader.update(
         dataset=dict(
             type=dataset_type,
             data_root=data_root,
-            metainfo=metainfo,
             ann_file='train/_annotations.coco.json',
             data_prefix=dict(img='train/'),
             filter_cfg=dict(filter_empty_gt=True, min_size=32),
