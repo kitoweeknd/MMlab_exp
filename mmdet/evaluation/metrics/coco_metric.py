@@ -143,21 +143,7 @@ class CocoMetric(BaseMetric):
             self._coco_api = None
 
         # handle dataset lazy init
-        self.cat_ids = ['Image_Transmission_signal_LFST',
-                        'Image_Transmission_signal_LFVST',
-                        'Image_Transmission_signal_MFST',
-                        'Image_Transmission_signal_Square',
-                        'Image_Transmission_signal_VLFVST',
-                        'Image_Transmission_signal__P4PR',
-                        'Tarains_flight_control',
-                        'frequency_hopping_signal_LFMT',
-                        'frequency_hopping_signal_LFST',
-                        'frequency_hopping_signal_SFLT',
-                        'frequency_hopping_signal_SFMT',
-                        'frequency_hopping_signal_SFST',
-                        'frequency_hopping_signal_Square',
-                        'frequency_hopping_signal_VLFMT',
-                        'yunzhuo_flight_control2']
+        self.cat_ids = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         self.img_ids = None
 
     def fast_eval_recall(self,

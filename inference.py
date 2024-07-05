@@ -1,9 +1,9 @@
 from mmdet.apis import DetInferencer
 
 
-inferencer = DetInferencer(model='C:/ML/MMlab_exp/Drone_Thesis/res_faster_RCNN_FPN/20240517_144742/20240517_234822/vis_data/config.py',
-                           weights='E:/训练结果历史数据/Drone_thesis/exp1_faster-RCNN/epoch_60.pth',
+inferencer = DetInferencer(model='E:/训练结果历史数据/Drone_thesis/signal_detect/exp6_efficientNet/dino-5scale_swin-l_8xb2-12e_coco_signal.py',
+                           weights='E:/训练结果历史数据/Drone_thesis/signal_detect/exp6_efficientNet/epoch_60.pth',
                            device='cuda:0')
-inferencer('C:/ML/MMlab_exp/Drone_Thesis/res_faster_RCNN_FPN/20240517_144742/inference_input/',
-           out_dir='C:/ML/MMlab_exp/Drone_Thesis/res_faster_RCNN_FPN/20240517_144742/inference_res/',
+inferencer('E:/检测结果历史数据/Drone_Thesis/',
+           out_dir='E:/检测结果历史数据/Drone_Thesis/inference_res/',
            no_save_pred=False)
