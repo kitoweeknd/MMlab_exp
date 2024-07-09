@@ -1,3 +1,4 @@
+# 可以试试增加学习率和减少数据集内的负样本
 _base_ = [
     '../_base_/datasets/coco_detection.py', '../_base_/default_runtime.py'
 ]
@@ -140,7 +141,7 @@ optim_wrapper = dict(
 )  # custom_keys contains sampling_offsets and reference_points in DeformDETR  # noqa
 
 # learning policy
-max_epochs = 240
+max_epochs = 600
 train_cfg = dict(
     type='EpochBasedTrainLoop',
     max_epochs=max_epochs,
