@@ -29,6 +29,7 @@ def parse_args():
         help='enable automatically scaling LR.')
     parser.add_argument(
         '--resume',
+        # default='E:/训练结果历史数据/Drone_thesis/signal_detect/exp8_CODETR/epoch_11.pth',
         nargs='?',
         type=str,
         const='auto',

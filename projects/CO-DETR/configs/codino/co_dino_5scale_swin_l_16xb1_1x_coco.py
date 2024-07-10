@@ -1,6 +1,6 @@
 _base_ = ['co_dino_5scale_r50_8xb2_1x_coco.py']
 
-pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_large_patch4_window12_384_22k.pth'  # noqa
+pretrained = 'E:/Pretrain/swin_large_patch4_window12_384_22k.pth'  # noqa
 
 # model settings
 model = dict(
