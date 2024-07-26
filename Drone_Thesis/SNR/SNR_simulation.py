@@ -30,7 +30,7 @@ frequencies = [100, 200, 300, 400, 500]  # 跳变频率集合
 hop_duration = 0.1  # 每次频率跳变持续时间（秒）
 total_duration = 5  # 信号总持续时间（秒）
 sample_rate = 10000  # 采样率（Hz）
-snr = -20  # 信噪比（dB）
+snr = -15  # 信噪比（dB）
 
 # 生成跳频信号
 t, hopping_signal = generate_frequency_hopping_signal(frequencies, hop_duration, sample_rate, total_duration)
@@ -49,4 +49,3 @@ plt.xlabel('Time [sec]')
 plt.colorbar(label='Magnitude')
 plt.tight_layout()
 plt.show()
-plt.savefig('-20')
