@@ -2,6 +2,7 @@ _base_ = ['co_dino_5scale_r50_8xb2_1x_coco.py']
 
 pretrained = 'E:/Pretrain/swin_large_patch4_window12_384_22k.pth'  # noqa
 
+
 # model settings
 model = dict(
     backbone=dict(

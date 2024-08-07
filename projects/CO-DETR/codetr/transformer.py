@@ -1084,7 +1084,7 @@ class CoDinoTransformer(CoDeformableDetrTransformer):
         self.level_embeds = nn.Parameter(
             torch.Tensor(self.num_feature_levels, self.embed_dims))
         self.enc_output = nn.Linear(self.embed_dims, self.embed_dims)
-        self.enc_output_norm = nn.LayerNorm(self.embed_dims)
+        self.enc_output_norm = nn.LayerNorm(self.embed_dims) 
         self.query_embed = nn.Embedding(self.two_stage_num_proposals,
                                         self.embed_dims)
 
