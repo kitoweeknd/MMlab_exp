@@ -29,24 +29,18 @@ from mmdet.evaluation import CocoMetric
 
 # dataset settings
 dataset_type = CocoDataset
-data_root = 'E:/数据集历史数据/drone_thesis_detection/MMlab/drone_coco_3Aug_DFresolition_TV/'
+data_root = 'E:/数据集历史数据/drone_thesis_detection/MMlab/测试用/signal_coco/'
 backend_args = None
 metainfo = {
-    'classes': ('Image_Transmission_signal_LFST',
-                'Image_Transmission_signal_LFVST',
-                'Image_Transmission_signal_MFST',
-                'Image_Transmission_signal_Square',
-                'Image_Transmission_signal_VLFVST',
-                'Image_Transmission_signal__P4PR',
-                'Tarains_flight_control',
-                'frequency_hopping_signal_LFMT',
-                'frequency_hopping_signal_LFST',
-                'frequency_hopping_signal_SFLT',
-                'frequency_hopping_signal_SFMT',
-                'frequency_hopping_signal_SFST',
-                'frequency_hopping_signal_Square',
-                'frequency_hopping_signal_VLFMT',
-                'yunzhuo_flight_control2',
+    'classes': ('DJ_FlightCon',
+                'DJ_PCTrans',
+                'singal1',
+                'singal2',
+                'singal3',
+                'singal4',
+                'singal5',
+                'singal6',
+                'singal7',
                 ),
     'palette': [
         (220, 20, 60),

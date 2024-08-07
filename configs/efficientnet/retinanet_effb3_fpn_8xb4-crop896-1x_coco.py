@@ -72,7 +72,7 @@ optim_wrapper = dict(
     paramwise_cfg=dict(norm_decay_mult=0, bypass_duplicate=True))
 
 # learning policy
-max_epochs = 12
+max_epochs = 80
 param_scheduler = [
     dict(type='LinearLR', start_factor=0.1, by_epoch=False, begin=0, end=1000),
     dict(

@@ -7,23 +7,24 @@ model = dict(
         bbox_head=dict(num_classes=15)))
 
 # 修改数据集相关配置
-data_root = 'E:/数据集历史数据/MMlab/drone_coco/'
+data_root = 'E:/数据集历史数据/drone_thesis_detection/MMlab/drone_coco_3Aug_DFresolition_TVT/'
+
 metainfo = {
-    'classes': (        'Image_Transmission_signal_LFST',
-                        'Image_Transmission_signal_LFVST',
-                        'Image_Transmission_signal_MFST',
-                        'Image_Transmission_signal_Square',
-                        'Image_Transmission_signal_VLFVST',
-                        'Image_Transmission_signal__P4PR',
-                        'Tarains_flight_control',
-                        'frequency_hopping_signal_LFMT',
-                        'frequency_hopping_signal_LFST',
-                        'frequency_hopping_signal_SFLT',
-                        'frequency_hopping_signal_SFMT',
-                        'frequency_hopping_signal_SFST',
-                        'frequency_hopping_signal_Square',
-                        'frequency_hopping_signal_VLFMT',
-                        'yunzhuo_flight_control2',
+    'classes': ('Image_Transmission_signal_LFST',
+                'Image_Transmission_signal_LFVST',
+                'Image_Transmission_signal_MFST',
+                'Image_Transmission_signal_Square',
+                'Image_Transmission_signal_VLFVST',
+                'Image_Transmission_signal__P4PR',
+                'Tarains_flight_control',
+                'frequency_hopping_signal_LFMT',
+                'frequency_hopping_signal_LFST',
+                'frequency_hopping_signal_SFLT',
+                'frequency_hopping_signal_SFMT',
+                'frequency_hopping_signal_SFST',
+                'frequency_hopping_signal_Square',
+                'frequency_hopping_signal_VLFMT',
+                'yunzhuo_flight_control2',
                 ),
     'palette': [
         (220, 20, 60),
@@ -44,8 +45,7 @@ val_dataloader = dict(
         data_prefix=dict(img='val/')))
 
 # 修改评价指标相关配置
-val_evaluator = dict(ann_file=data_root + 'val/annotation_coco.json',
-                     )
+val_evaluator = dict(ann_file=data_root + 'val/annotation_coco.json',)
 
 
 test_dataloader = dict(
@@ -61,4 +61,4 @@ test_evaluator = dict(
 
 
 # 使用预训练的 faster R-CNN 模型权重来做初始化，可以提高模型性能
-load_from = 'E:/pretrain/faster_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.378_20200504_180032-c5925ee5.pth'
+load_from = 'E:/Pretrain/faster_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.378_20200504_180032-c5925ee5.pth'

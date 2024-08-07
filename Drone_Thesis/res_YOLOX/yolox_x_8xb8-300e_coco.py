@@ -1,9 +1,8 @@
-_base_ = 'C:/ML/MMlab_exp/configs/fast_rcnn/fast-rcnn_r50-caffe_fpn_1x_coco.py'
+_base_ = 'C:/ML/MMlab_exp/configs/yolox/yolox_x_8xb8-300e_coco.py'
 
 
 model = dict(
-    roi_head=dict(
-        bbox_head=dict(num_classes=15))
+        bbox_head=dict(num_classes=15)
 )
 
 # 修改数据集相关配置
@@ -29,19 +28,30 @@ metainfo = {
         (220, 20, 60),
     ]
 }
-train_dataloader = dict(
-    batch_size=4,
+
+train_dataset = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
         ann_file='train/annotation_coco.json',
-        data_prefix=dict(img='train/')))
+        data_prefix=dict(img='train/')
+    )
+)
+
+train_dataloader = dict(
+    batch_size=4,
+    dataset=train_dataset,
+)
+
+
 val_dataloader = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
         ann_file='val/annotation_coco.json',
-        data_prefix=dict(img='val/')))
+        data_prefix=dict(img='val/')
+    )
+)
 
 # 修改评价指标相关配置
 val_evaluator = dict(ann_file=data_root + 'val/annotation_coco.json')
@@ -56,4 +66,4 @@ test_evaluator = dict(
     outfile_prefix='./work_dirs/signals_test/test')
 
 
-# 没有预训练模型
+load_from = 'E:/Pretrain/yolox_x_8x8_300e_coco_20211126_140254-1ef88d67.pth'

@@ -332,7 +332,7 @@ optim_wrapper = dict(
 val_evaluator = dict(metric='bbox')
 test_evaluator = val_evaluator
 
-max_epochs = 12
+max_epochs = 60
 train_cfg = dict(
     _delete_=True,
     type='EpochBasedTrainLoop',

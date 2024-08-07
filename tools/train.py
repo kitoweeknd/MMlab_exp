@@ -10,7 +10,7 @@ from mmengine.runner import Runner
 from mmdet.utils import setup_cache_size_limit_of_dynamo
 
 
-path = 'E:/训练结果历史数据/Drone_thesis/signal_detect/exp8_CODETR/'
+path = 'E:/训练结果历史数据/Drone_thesis/signal_detect/exp13_YOLOX/exp1/'
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
@@ -29,7 +29,7 @@ def parse_args():
         help='enable automatically scaling LR.')
     parser.add_argument(
         '--resume',
-        # default='E:/训练结果历史数据/Drone_thesis/signal_detect/exp8_CODETR/epoch_11.pth',
+        #default='E:/训练结果历史数据/Drone_thesis/signal_detect/exp8_CODETR/exp1/epoch_44.pth',
         nargs='?',
         type=str,
         const='auto',

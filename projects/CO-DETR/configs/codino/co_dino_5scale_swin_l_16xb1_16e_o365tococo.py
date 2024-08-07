@@ -101,7 +101,7 @@ test_dataloader = val_dataloader
 
 optim_wrapper = dict(optimizer=dict(lr=1e-4))
 
-max_epochs = 16
+max_epochs = 60
 train_cfg = dict(max_epochs=max_epochs)
 
 param_scheduler = [

@@ -6,7 +6,7 @@ model = dict(
 )
 
 # 修改数据集相关配置
-data_root = 'E:/数据集历史数据/MMlab/drone signal detect few shot.v3i.coco-mmdetection/'
+data_root = 'E:/数据集历史数据/drone_thesis_detection/MMlab/drone_coco_3Aug_DFresolition_TVT/'
 metainfo = {
     'classes': ('Image_Transmission_signal_LFST',
                 'Image_Transmission_signal_LFVST',
@@ -29,29 +29,29 @@ metainfo = {
     ]
 }
 train_dataloader = dict(
-    batch_size=16,
+    batch_size=4,
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        ann_file='train/_annotations.coco.json',
+        ann_file='train/annotation_coco.json',
         data_prefix=dict(img='train/')))
 val_dataloader = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        ann_file='val/_annotations.coco.json',
+        ann_file='val/annotation_coco.json',
         data_prefix=dict(img='val/')))
 
 # 修改评价指标相关配置
-val_evaluator = dict(ann_file=data_root + 'val/_annotations.coco.json')
+val_evaluator = dict(ann_file=data_root + 'val/annotation_coco.json')
 test_dataloader = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        ann_file=data_root + 'test/_annotations.coco.json',
+        ann_file=data_root + 'test/annotation_coco.json',
         data_prefix=dict(img='test/')))
 test_evaluator = dict(
-    ann_file=data_root + 'test/_annotations.coco.json',
+    ann_file=data_root + 'test/annotation_coco.json',
     outfile_prefix='./work_dirs/signals_test/test')
 
 
