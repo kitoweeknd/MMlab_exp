@@ -1,4 +1,4 @@
-_base_ = 'mmdet::common/ssj_scp_270k_coco-instance.py'
+_base_ = 'mmdet::common/ssj_scp_270k_coco-instance_custom.py',
 
 custom_imports = dict(
     imports=['projects.CO-DETR.codetr'], allow_failed_imports=False)
@@ -6,7 +6,7 @@ custom_imports = dict(
 # model settings
 num_dec_layer = 6
 loss_lambda = 2.0
-num_classes = 80
+num_classes = 15
 
 image_size = (1024, 1024)
 batch_augments = [

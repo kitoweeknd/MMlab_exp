@@ -10,13 +10,13 @@ from mmengine.runner import Runner
 from mmdet.utils import setup_cache_size_limit_of_dynamo
 
 
+path = 'E:/训练结果历史数据/Drone_thesis/signal_detect/exp6_efficientNet/'
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
-    parser.add_argument('config',
-                        default='D:/ML_Project/mmDLtoolbox/Drone_Thesis/faster-rcnn_r50-caffe_fpn-1x_signal.py',
-                        help='train config file path')
+    parser.add_argument('config', help='train config file path')
     parser.add_argument('--work-dir',
-                        default='D:/ML_Project/mmDLtoolbox/Drone_Thesis/res_faster_RCNN_FPN/',
+                        default=path,
                         help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
