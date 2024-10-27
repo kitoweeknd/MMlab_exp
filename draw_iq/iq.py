@@ -12,6 +12,9 @@ fig_save_path = 'E:/Drone_dataset/RFUAV/pics_exp1_alldrones/'
 file_path = 'E:/Drone_dataset/RFUAV/rawdata/'
 datapack = 'E:/Drone_dataset/RFUAV/UAVDATA/DJI AVATA2/DJI AVTA2-SNR0dB-85db_5765m_100m_10m(3).iq'
 
+UAV1 = ''
+UAV2 = ''
+
 
 def check_spectrum():
     drone_name = ''
@@ -69,8 +72,8 @@ def check_folder(folder_path):
 
 
 def main():
-    # check_spectrum()
-    DrawandSave()
+    check_spectrum()
+    # DrawandSave()
 
 
 if __name__ == '__main__':
