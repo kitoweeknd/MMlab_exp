@@ -10,7 +10,7 @@ from mmengine.runner import Runner
 from mmdet.utils import setup_cache_size_limit_of_dynamo
 
 
-path = 'E:/训练结果历史数据/Drone_thesis/signal_detect/exp6_efficientNet/'
+path = 'E:/Train_log/Drone_thesis/signal_detect/exp15_dabdetr/'
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
