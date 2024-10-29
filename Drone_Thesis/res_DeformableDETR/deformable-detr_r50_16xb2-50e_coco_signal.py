@@ -1,8 +1,8 @@
-_base_ = 'D:\ML_Project\mmDLtoolbox\configs\dino\dino-5scale_swin-l_8xb2-12e_coco.py'
+_base_ = 'C:\ML\MMlab_exp\configs\deformable_detr\deformable-detr_r50_16xb2-50e_coco.py'
 
 
 # 修改数据集相关配置
-data_root = 'E:/深度学习记录存储/数据集/drone_coco/'
+data_root = 'E:/Dataset_log/drone_thesis_detection/MMlab/drone_coco_3Aug_DFresolition_TV/'
 metainfo = {
     'classes': (
                         'Image_Transmission_signal_LFST',
