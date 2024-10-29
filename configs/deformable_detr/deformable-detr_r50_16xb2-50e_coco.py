@@ -134,7 +134,7 @@ optim_wrapper = dict(
         }))
 
 # learning policy
-max_epochs = 50
+max_epochs = 300
 train_cfg = dict(
     type='EpochBasedTrainLoop', max_epochs=max_epochs, val_interval=1)
 val_cfg = dict(type='ValLoop')
