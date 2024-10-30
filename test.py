@@ -8,7 +8,7 @@ C = np.array([[0, 2, 4, 6],
 
 # 显示图像
 plt.imshow(C)
-
+12312113
 # 添加颜色条
 plt.colorbar()
 
